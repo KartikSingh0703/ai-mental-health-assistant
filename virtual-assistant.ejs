@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Virtual Assistant for Mental Fitness</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #E0F7FA;
+            color: #011F4B;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #03396C;
+            padding: 10px 20px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 20px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Main Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Mood Tracker */
+        .mood-tracker {
+            background-color: #B3CDE0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .mood-tracker .mood-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .mood-tracker .mood {
+            font-size: 2em;
+            cursor: pointer;
+            color: #03396C;
+        }
+
+        .mood-tracker .mood img {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Journal Entry */
+        .journal-entry {
+            background-color: #E0F7FA;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .journal-entry textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #03396C;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        /* Guided Meditation */
+        .meditation {
+            background-color: #B3CDE0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .meditation button {
+            background-color: #03396C;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Progress Chart */
+        .progress-chart {
+            background-color: #B3CDE0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Chatbot */
+        .chatbot {
+            background-color: #6497B1;
+            padding: 20px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot .chat-window {
+            background-color: white;
+            height: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border: 1px solid #03396C;
+        }
+
+        .chatbot input {
+            width: 75%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #03396C;
+        }
+
+        .chatbot button {
+            width: 20%;
+            padding: 10px;
+            background-color: #03396C;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Mental Fitness Assistant</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard">
+        <div class="mood-tracker">
+            <h2>Daily Mood Tracker</h2>
+            <div class="mood-icons">
+                <div class="mood" data-mood="Happy">😊</div>
+                <div class="mood" data-mood="Neutral">😐</div>
+                <div class="mood" data-mood="Sad">
+                    <img src="/mnt/data/icons8-sad-face-50.png" alt="Sad Icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="journal-entry">
+            <h2>Journal Entry</h2>
+            <textarea placeholder="How are you feeling today?" id="journal"></textarea>
+            <button id="save-journal">Save</button>
+        </div>
+        
+        
+        <div class="meditation">
+            <h2>Guided Meditation</h2>
+            <button>Start Meditation</button>
+        </div>
+
+        <div class="progress-chart">
+            <h2>Your Progress</h2>
+            <div id="chart">[Progress Chart Placeholder]</div>
+        </div>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div class="chatbot">
+        <h2>AI Chat</h2>
+        <div class="chat-window" id="chat-window">
+            <p>Hi! How can I assist you today?</p>
+        </div>
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script>
+        // Basic chat functionality
+        document.getElementById('send-btn').addEventListener('click', () => {
+            const chatInput = document.getElementById('chat-input');
+            const chatWindow = document.getElementById('chat-window');
+            
+            if (chatInput.value.trim() !== "") {
+                const userMessage = document.createElement('p');
+                userMessage.textContent = chatInput.value;
+                chatWindow.appendChild(userMessage);
+
+                // AI response simulation
+                const aiResponse = document.createElement('p');
+                aiResponse.textContent = "Let me think...";
+                aiResponse.style.color = "#03396C";
+                chatWindow.appendChild(aiResponse);
+                
+                chatInput.value = "";
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        });
+
+        // Mood tracker functionality
+        document.querySelectorAll('.mood').forEach(mood => {
+            mood.addEventListener('click', () => {
+                alert(`You are feeling ${mood.getAttribute('data-mood')} today!`);
+            });
+        });
+
+        document.getElementById("save-journal-btn").addEventListener("click", async () => {
+  const journalEntry = document.getElementById("journal").value;
+
+  try {
+    const response = await fetch("/save-journal", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ journalEntry }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      alert(result.message);
+    } else {
+      alert(result.message || "An error occurred.");
+    }
+  } catch (error) {
+    console.error("Error saving journal entry:", error);
+  }
+});
+
+
+
+
+    </script>
+</body>
+</html>
