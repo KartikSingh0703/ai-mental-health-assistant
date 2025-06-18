@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Background Survey</title><style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #E0F7FA, #B3CDE0); /* Updated gradient */
+      color: #011F4B; /* Dark blue for text */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .survey-form {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95); /* Slightly more transparent for consistency */
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      padding: 20px 30px;
+      backdrop-filter: blur(10px);
+      color: #03396C; /* Consistent text color */
+  }
+  
+  .survey-form h2 {
+      text-align: center;
+      color: #03396C; /* Dark blue heading */
+      font-size: 24px;
+      margin-bottom: 25px;
+  }
+  
+  .form-group {
+      margin-bottom: 15px;
+  }
+  
+  label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #011F4B; /* Primary text color */
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #03396C; /* Dark border */
+      border-radius: 5px;
+      box-sizing: border-box;
+  }
+  
+  .form-group-checkbox {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+  }
+  
+  .form-group-checkbox label {
+      font-weight: normal;
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #B3CDE0; /* Light blue */
+      color: #03396C; /* Dark blue */
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+  }
+  
+  .form-group-checkbox input[type="checkbox"] {
+      display: none;
+  }
+  
+  .form-group-checkbox input[type="checkbox"]:checked + label {
+      background-color: #03396C; /* Dark blue when active */
+      color: #fff; /* White text */
+  }
+  
+  .bmi-result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #03396C; /* Accent color */
+      text-align: center;
+  }
+  
+  button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background-color: #03396C; /* Consistent button color */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+      background-color: #1a4970; /* Slightly darker blue on hover */
+  }
+  
+  .form-section-title {
+      font-size: 1.1em;
+      color: #03396C; /* Accent section titles */
+      margin-bottom: 10px;
+      font-weight: bold;
+  }
+  </style>
+  </head>
+  <body>
+    <div class="survey-form">
+      <h2>Welcome to Healthify</h2>
+      <form id="surveyForm" action="/submit-survey" method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <div class="form-group">
+          <label>Daily Activities:</label>
+          <select id="activity" name="activity" required>
+            <option value="">Select</option>
+            <option value="none">No Activity</option>
+            <option value="light">Lightly Active</option>
+            <option value="moderate">Moderately Active</option>
+            <option value="very">Very Active</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Medical Conditions:</label>
+          <div class="form-group-checkbox">
+            <input
+              type="checkbox"
+              id="diabetes"
+              name="medicalCondition[]"
+              value="Diabetes"
+            />
+            <label for="diabetes">Diabetes</label>
+
+            <input
+              type="checkbox"
+              id="asthma"
+              name="medicalCondition[]"
+              value="Asthma"
+            />
+            <label for="asthma">Asthma</label>
+
+            <input
+              type="checkbox"
+              id="hypertension"
+              name="medicalCondition[]"
+              value="Hypertension"
+            />
+            <label for="hypertension">Hypertension</label>
+
+            <input
+              type="checkbox"
+              id="none"
+              name="medicalCondition[]"
+              value="None"
+            />
+            <label for="none">None</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Emotional Health:</label>
+          <div class="form-group-checkbox">
+            <input
+              type="checkbox"
+              id="sleep"
+              name="emotionalHealth[]"
+              value="Sleep Issue"
+            />
+            <label for="sleep">Sleep Issue</label>
+
+            <input
+              type="checkbox"
+              id="depression"
+              name="emotionalHealth[]"
+              value="Depression"
+            />
+            <label for="depression">Depression</label>
+
+            <input
+              type="checkbox"
+              id="anger"
+              name="emotionalHealth[]"
+              value="Anger Issues"
+            />
+            <label for="anger">Anger Issues</label>
+
+            <input
+              type="checkbox"
+              id="stress"
+              name="emotionalHealth[]"
+              value="Workload Stress"
+            />
+            <label for="stress">Workload Stress</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hobbies">Hobbies (Things that make you happy):</label>
+          <textarea id="hobbies" name="hobbies" rows="2"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Favorite Music Genre:</label>
+          <div class="form-group-checkbox">
+            <input type="checkbox" id="pop" name="musicGenre[]" value="Pop" />
+            <label for="pop">Pop</label>
+
+            <input type="checkbox" id="rock" name="musicGenre[]" value="Rock" />
+            <label for="rock">Rock</label>
+
+            <input type="checkbox" id="jazz" name="musicGenre[]" value="Jazz" />
+            <label for="jazz">Jazz</label>
+
+            <input
+              type="checkbox"
+              id="classical"
+              name="musicGenre[]"
+              value="Classical"
+            />
+            <label for="classical">Classical</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="height">Height (in cm):</label>
+          <input type="number" id="height" name="height" required />
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (in kg):</label>
+          <input type="number" id="weight" name="weight" required />
+        </div>
+
+        <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+        <p class="bmi-result" id="bmiResult"></p>
+
+        <button type="submit" id="submitButton" disabled>Submit</button>
+      </form>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        const height =
+          parseFloat(document.getElementById("height").value) / 100;
+        const weight = parseFloat(document.getElementById("weight").value);
+        if (height && weight) {
+          const bmi = (weight / (height * height)).toFixed(2);
+          document.getElementById("bmiResult").textContent =
+            "Your BMI is: " + bmi;
+          document.getElementById("submitButton").disabled = false;
+        } else {
+          alert("Please enter valid height and weight values");
+        }
+      }
+
+      // Ensure "None" medical condition disables others
+      document.querySelectorAll('input[name="medicalCondition[]"]').forEach((checkbox) => {
+        checkbox.addEventListener("change", (e) => {
+          if (e.target.value === "None") {
+            document
+              .querySelectorAll('input[name="medicalCondition[]"]:not([value="None"])')
+              .forEach((otherCheckbox) => (otherCheckbox.checked = false));
+          } else {
+            document.querySelector('input[name="medicalCondition[]"][value="None"]').checked = false;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
+ 

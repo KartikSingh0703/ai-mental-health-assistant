@@ -1,0 +1,201 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2d88ff, #9147ff);
+  color: #333;
+}
+
+/* Form Container */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Titles */
+h1,
+h2 {
+  color: #2d88ff;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+p {
+  color: #666;
+}
+
+/* Input Fields and Buttons */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2d88ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1c5fbb;
+}
+
+/* Checkbox and Radio Groups */
+.checkbox-group label,
+.radio-group label {
+  font-weight: normal;
+  margin-right: 10px;
+  display: inline-block;
+  color: #333;
+}
+
+/* Error Messages */
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+/* Survey Page Styling */
+.survey-title {
+  font-size: 1.5em;
+  color: #2d88ff;
+  margin-bottom: 20px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-group label {
+  background: #e0e4e8;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label {
+  background: #2d88ff;
+  color: #fff;
+}
+
+/* Virtual Assistant Page */
+.virtual-assistant-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.virtual-assistant-container h1 {
+  color: #2d88ff;
+  margin-bottom: 20px;
+}
+
+.virtual-assistant-container p {
+  font-size: 1.1em;
+  color: #555;
+}
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2d88ff, #9147ff);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px 30px;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  text-align: center;
+  color: #2d88ff;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #2d88ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1c5fbb;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #2d88ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
