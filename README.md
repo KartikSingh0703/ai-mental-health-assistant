@@ -1,2 +1,2 @@
 # ai-mental-health-assistant
-cross platform 
+cross platform using firebase database
